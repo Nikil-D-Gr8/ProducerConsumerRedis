@@ -1,5 +1,6 @@
 import argparse
 from redis import ConnectionPool, Redis
+from redis.commands.helpers import decode_dict_keys
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -52,7 +53,8 @@ while True:
 
         for stream_name, entries in messages:  # type: ignore
             for message_id, fields in entries:
-                print(fields("data"))
+                print(fields[b"data"].decode())
+                # print(fields)
                 start_id = message_id
 
     except KeyboardInterrupt:
