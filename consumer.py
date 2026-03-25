@@ -8,17 +8,22 @@ parser.add_argument(
     help="Prints the stream from the beginning",
     action="store_true",
 )
-parser.add_argument("--host", help="[OPTIONAL] Host name of the Redis Server")
 parser.add_argument(
-    "--port", help="[OPTIONAL] Port in which the Redis Server is running"
+    "--host", help="[OPTIONAL] Host name of the Redis Server", default="localhost"
 )
 parser.add_argument(
-    "--stream", help="Stream id to which you want to subscribe", required=True
+    "--port",
+    help="[OPTIONAL] Port in which the Redis Server is running",
+    default=6379,
+    type=int,
+)
+parser.add_argument(
+    "-s", "--stream", help="Stream id to which you want to subscribe", required=True
 )
 args = parser.parse_args()
 
-host = args.host or "localhost"
-port = args.port or 6379
+host = args.host
+port = args.port
 
 if args.beginning:
     print(
@@ -45,12 +50,9 @@ while True:
             block=0,
         )
 
-        if not messages:
-            continue
-
-        for stream_name, entries in messages:
+        for stream_name, entries in messages:  # type: ignore
             for message_id, fields in entries:
-                print(fields.get("data"))
+                print(fields("data"))
                 start_id = message_id
 
     except KeyboardInterrupt:
