@@ -36,6 +36,7 @@ try:
             print(line)
 
             r.xadd(args.stream, {"data": line})
+            r.expire(args.stream, 60)
 
 except KeyboardInterrupt:
     r.xadd(
