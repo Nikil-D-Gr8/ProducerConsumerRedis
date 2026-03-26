@@ -28,8 +28,8 @@ try:
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
-        bufsize=1,
     ) as proc:
+        # text and bufsize= 0 seem to be exclusive
         for line in proc.stdout:  # type: ignore
             line = line.rstrip("\n")
 
@@ -38,6 +38,10 @@ try:
             r.xadd(args.stream, {"data": line})
 
 except KeyboardInterrupt:
+    r.xadd(
+        args.stream,
+        {"data": "The Producer was interupted, The streaming has stopped!! "},
+    )
     print()
     print("You stopped producer")
 
