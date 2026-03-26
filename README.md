@@ -37,7 +37,7 @@
 
 ### Good-to-have Features (Currently Missing)
 
-* The producer should support running any UNIX command as a subprocess.
+* The producer should support running any UNIX command as a subprocess. ( adding shell=True will work, not verified)
 * ~~Maybe check if it works on Windows?~~ Not touching Windows unless I’m paid to do so.
 
 ### v2?
