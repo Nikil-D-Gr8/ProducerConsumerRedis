@@ -11,8 +11,10 @@ parser.add_argument(
     help="Use random_log.py/custom_input.py/random_message.py",
 )
 parser.add_argument("-s", "--stream", required=True, help="Redis stream name")
-parser.add_argument("--host", default="localhost")
-parser.add_argument("--port", default=6379, type=int)
+parser.add_argument("--host", default="localhost", help="[OPTIONAL] Redis server ")
+parser.add_argument(
+    "--port", default=6379, type=int, help="[OPTIONAL] Redis server port"
+)
 
 args = parser.parse_args()
 
