@@ -37,9 +37,8 @@
 
 ### Good-to-have Features (Currently Missing)
 
-* The producer should support running any UNIX command as a subprocess. ( adding shell=True will work, not verified)
+* The producer should support running any UNIX command as a subprocess. ( adding shell=True will work, but didnt want the user to add python -m manually while running so picked the current way of doing things. )
 * ~~Maybe check if it works on Windows?~~ Not touching Windows unless I’m paid to do so.
-
 ### v2?
 
 * To get familiar with WebSockets, the plan is to create a server that receives the data stream via sockets from "workers".
