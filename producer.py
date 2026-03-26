@@ -17,6 +17,8 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+if args.producer == "custom_input.py":
+    print("Please type your input here! type 'q' or 'exit' to quit")
 
 r = redis.Redis(host=args.host, port=args.port, db=0)
 
@@ -39,8 +41,6 @@ except KeyboardInterrupt:
     print()
     print("You stopped producer")
 
-
-print("The producer has exited")
 # https://realpython.com/python-subprocess/
 # https://stackoverflow.com/questions/230751/how-can-i-flush-the-output-of-the-print-function
 # https://docs.python.org/3/library/subprocess.html#subprocess.Popen

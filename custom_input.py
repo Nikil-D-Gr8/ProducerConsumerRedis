@@ -1,5 +1,4 @@
 def main():
-    print("Please send a message to the Redis stream, 'exit' or 'q' ends the program")
 
     while True:
         user_in = input()
